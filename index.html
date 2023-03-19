@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Even or Odd Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Even or Odd Checker</h1>
+    <form id="evenOddForm">
+      <label for="numberInput">Enter a number:</label>
+      <input type="text" id="numberInput">
+      <button type="submit">Check</button>
+    </form>
+    <div id="result"></div>
+    </div>
+    <script>
+        const evenOddForm = document.getElementById('evenOddForm');
+        const numberInput = document.getElementById('numberInput');
+        
+        evenOddForm.addEventListener('submit', (event) => {
+          event.preventDefault(); // Prevent form submission from reloading the page
+          const number = parseInt(numberInput.value);
+          if (isNaN(number)) {
+            alert('Invalid input: not a number');
+          } else if (number % 2 === 0) {
+            showNotification(`${number} is even`);
+          } else {
+            showNotification(`${number} is odd`);
+          }
+        });
+        
+        function showNotification(message) {
+          // Check if the Notification API is supported
+          if (!('Notification' in window)) {
+            alert('Notifications are not supported in your browser');
+            return;
+          }
+        
+          // Request permission to display notifications if necessary
+          if (Notification.permission !== 'granted') {
+            Notification.requestPermission().then(permission => {
+              if (permission === 'granted') {
+                displayNotification(message);
+              }
+            });
+          } else {
+            displayNotification(message);
+          }
+        }
+        
+        function displayNotification(message) {
+          // Display the notification
+          const notification = new Notification('Even/Odd Checker', {
+            body: message,
+            icon: 'https://www.example.com/notification-icon.png'
+          });
+        }        
+    </script>
+</body>
+</html>
