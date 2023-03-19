@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Even or Odd</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Is it even or odd?</h1>
+    <form method="POST">
+      <label for="number">Enter a number:</label>
+      <input type="text" id="number" name="number">
+      <button type="submit">Submit</button>
+    </form>
+    {% if result %}
+    <p>{{ result }}</p>
+    {% endif %}
+  </body>
+</html>
