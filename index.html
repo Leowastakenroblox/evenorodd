@@ -18,7 +18,6 @@
     <script>
         const evenOddForm = document.getElementById('evenOddForm');
         const numberInput = document.getElementById('numberInput');
-        
         evenOddForm.addEventListener('submit', (event) => {
           event.preventDefault();
           const number = parseInt(numberInput.value);
@@ -30,7 +29,6 @@
             showNotification(`${number} is odd`);
           }
         });
-        
         function showNotification(message) {
           if (!('Notification' in window)) {
             alert('Notifications are not supported in your browser');
@@ -46,7 +44,6 @@
             displayNotification(message);
           }
         }
-        
         function displayNotification(message) {
           const notification = new Notification('Even/Odd Checker', {
             body: message,
